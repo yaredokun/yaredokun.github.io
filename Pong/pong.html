@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<title> Pong </title> 
+		<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script> 
+		<script> 
+			function start(){
+				sjs.open("target",1000,800);
+				
+				//Ball
+				var ball = new sjs.Image("Images/spike.png");
+					ball.type = "ball";
+					ball.setSize(100,100);
+					ball.center();
+					ball.friction = 0;
+					ball.bounce();
+					ball.pushRight(6);
+					ball.pushUp(7);
+
+				//Paddle 1
+				var paddle1 = new sjs.Image("Images/green.png");
+					paddle1.type = "paddle";
+					paddle1.center().bottom();
+					paddle1.setSize(200,40);
+
+				//Paddle 2
+				var paddle2 = new sjs.Image("Images/green.png");
+					paddle2.type = "paddle";
+					paddle2.center().top();
+					paddle2.setSize(200,40);
+  				
+  				//Score
+  				var score = 0;
+  				var score_txt = new sjs.Text("Score: 0", 21, "orange");
+				
+				sjs.keyDown(LEFT_KEY, function(){
+					paddle1.pushLeft();
+				
+  				});
+  				
+  				sjs.keyDown(RIGHT_KEY, function(){
+  					paddle1.pushRight();
+  					
+  				});
+
+  				sjs.keyDown(A_KEY, function(){
+					paddle2.pushLeft();
+				
+  				});
+  				
+  				sjs.keyDown(D_KEY, function(){
+  					paddle2.pushRight();
+  					
+  				});
+
+
+				sjs.onHit("ball","paddle", function(ball,paddle){
+					score = score + 1;
+					score_txt.setText("Score: "+score);
+					soundEffect.play();
+					sjs.bounceOff(ball,paddle);
+					speed = 3;
+					score_txt2.setText("score:"+score2);
+					ballpushUp(0).pushRight(0);
+					ballcenter();;
+					ball.pushUp(speed + 1).pushRight(speed + 1);
+				});
+				if score_txt = > 19 function(){
+					window.location = "gameover.html"; 
+				});
+
+				//Sounds
+				var soundEffect = new Audio('Music/techno.mp3');
+				sjs.onHit("ball",["top_screen","bottom_screen"], function(ball, Myscreen){
+					score = score -1;
+					score_txt.setText("Score: "+score);
+					sjs.bounceOff(ball,Myscreen);
+				});
+
+			} //end start
+		</script> 
+	</head> 
+	<body onload = "start()">
+		<h1> Pong Game </h1> 
+		<div id="target" style="margin:auto;background:outer-space;"></div> 
+	</body> 
+</html> 
